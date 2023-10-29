@@ -6,8 +6,8 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             BestFirst s = new BestFirst();
             int number = sc.nextInt();
-            Iterator<BestFirst.State> it = s.solve(new sequence(number, 0),
-                    new sequence(number * 3, 0));
+            Iterator<BestFirst.State> it = s.solve(new sequence(number, 0,0),
+                    new sequence(number * 3, 0,Math.abs(number - number*3)));
            try {
 
 

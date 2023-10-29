@@ -38,8 +38,8 @@ public class sequence implements Ilayout {
         return resultChildren;
     }
 
-    private int heuristic(int i, int goalNum) {
-        return Math.abs(goalNum - i);
+    private int heuristic(int actual, int goalNum) {
+        return Math.abs(3 * goalNum - actual);
     }
     //TODO: acabar a heuristica
     @Override

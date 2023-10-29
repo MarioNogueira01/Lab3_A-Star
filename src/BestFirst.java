@@ -15,7 +15,7 @@ public class BestFirst {
     public static class State {
         private Ilayout layout;
         private State father;
-        private double g;
+        private int g;
 
         private int h;
         /**
@@ -26,7 +26,9 @@ public class BestFirst {
             father = n;
             if (father != null)
                 g = father.g + l.getG();
-            else g = 0;
+            else
+                g = 0;
+            h = l.getH();
         }
 
         /**
@@ -39,10 +41,13 @@ public class BestFirst {
         /**
          * Returns the cost associated with the state.
          */
-        public double getG() {
+        public int getG() {
             return g;
         }
 
+        private int getF(){
+            return g + h;
+        }
 
         /**
          * Calculates the hash code for the state.
@@ -65,9 +70,9 @@ public class BestFirst {
     /**
      * Generates a list of successor states for a given state.
      */
-    final private List<State> sucessores(State n) {
+    final private List<State> sucessores(State n, Ilayout goal) {
         List<State> sucs = new ArrayList<>();
-        List<Ilayout> children = n.layout.children();
+        List<Ilayout> children = n.layout.children(goal);
         for (Ilayout e : children) {
             if (n.father == null || !e.equals(n.father.layout)) {
                 State nn = new State(e, n);
@@ -77,13 +82,14 @@ public class BestFirst {
         return sucs;
     }
 
+
     /**
      * Solves a problem using the Best-First Search algorithm.
      */
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
         objective = goal;
         abertos = new PriorityQueue<>(10,
-                (s1, s2) -> (int) Math.signum(s1.getG() - s2.getG()));
+                (s1, s2) -> (int) Math.signum(s1.getF() - s2.getF()));
         fechados = new HashMap<>();
         abertos.add(new State(s, null));
         List<State> sucs;
@@ -100,7 +106,7 @@ public class BestFirst {
                 result.remove(result.remove(0));
                 return result.listIterator();
             } else {
-                sucs = this.sucessores(actual);
+                sucs = this.sucessores(actual,objective);
                 fechados.put(actual.layout, actual);
 
                 expansion++;
