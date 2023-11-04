@@ -17,10 +17,8 @@ public class Main {
                        BestFirst.State i = it.next();
                        System.out.println(i);
                        if (!it.hasNext()) {
-                           System.out.println("\n" + (int) i.getG());
-                           System.out.println("nós gerados = " + s.count);
-                           System.out.println("nós expandidos = " + s.expansion);
-                           System.out.println("nós fechados = " + s.fech);
+                           System.out.println("\n" + i.getG());
+
                        }
                    }
                }

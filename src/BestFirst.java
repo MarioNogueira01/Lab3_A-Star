@@ -95,7 +95,9 @@ public class BestFirst {
         List<State> sucs;
 
         while (!abertos.isEmpty()) {
+
             this.actual = abertos.poll();
+
             if (this.actual.layout.isGoal(objective)) {
                 List<State> result = new ArrayList<>();
                 result.add(this.actual);
@@ -108,7 +110,6 @@ public class BestFirst {
             } else {
                 sucs = this.sucessores(actual,objective);
                 fechados.put(actual.layout, actual);
-
                 expansion++;
                 count += sucs.size();
                 fech = fechados.size();
