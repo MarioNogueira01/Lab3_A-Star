@@ -6,11 +6,13 @@ public class BestFirst {
     private State actual;
     private Ilayout objective;
 
-    public int count = 0;
+    public int gera = 0;
 
     public int fech = 0;
 
     public int expansion = 0;
+
+    public int prof = 0;
 
     public static class State {
         private Ilayout layout;
@@ -103,6 +105,7 @@ public class BestFirst {
                 result.add(this.actual);
                 while (this.actual != null) {
                     result.add(0, this.actual.father);
+                    prof++;
                     this.actual = this.actual.father;
                 }
                 result.remove(result.remove(0));
@@ -111,7 +114,7 @@ public class BestFirst {
                 sucs = this.sucessores(actual,objective);
                 fechados.put(actual.layout, actual);
                 expansion++;
-                count += sucs.size();
+                gera += sucs.size();
                 fech = fechados.size();
                 for (State item : sucs) {
                     if (!fechados.containsKey(item.layout)) {
