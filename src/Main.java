@@ -24,13 +24,6 @@ public class Main {
                        System.out.println(i);
                        if (!it.hasNext()) {
                            System.out.println("\n" + i.getG());
-                           System.out.println("tempo de execucao : " + executionTimeSecs + " segundos e " + executionTimeMillis+" milisegundos");
-
-                           System.out.println("Nós fechados: " + s.fech);
-                           System.out.println("Nós gerados: " + s.gera);
-                           System.out.println("Nós expandidos: " + s.expansion);
-                           System.out.println("profundidade: " + s.prof);
-
                        }
                    }
                }
